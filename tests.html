@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        
+        <script type="text/javascript" src="LinkedNode.js"></script>
+        <script type="text/javascript">
+        
+        function what(name){
+            this.name = name;
+        }
+        
+        var l =    new LinkedNode( 'rich' )
+            .push( new LinkedNode( 'drew' ) )
+            .push( new LinkedNode( 'dave' ) )
+            .push( new LinkedNode( 'katrina' ) );
+        
+        console.log(l);
+        
+        l.each(function(i){
+            console.log(this, i);  
+        });
+        </script>
+    </body>
+</html>
