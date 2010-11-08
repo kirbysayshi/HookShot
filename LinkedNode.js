@@ -1,35 +1,33 @@
-function LinkedNode(obj){
+function LinkedNode(data, isHead){
     this.head;
     this.next;
     this.prev;
-    this.obj = obj;
-    console.log("NEW NODE: " + obj);
+    this.data = data;
+	if(isHead === true){ this.head = this; }
+    console.log("NEW NODE: " + data);
 }
 
 LinkedNode.prototype.length = 0;
 LinkedNode.prototype.push = function(node){
     this.next = node;
     node.prev = this;
-    if(!node.head){
-        this.head = this;
-    }
     node.head = this.head;
-    length++;
-    return this;
+    this.head.length++;
+    return node;
 }
-LinkedNode.prototype.pop = function(){
+LinkedNode.prototype.detach = function(){
     var  prev = this.prev
         ,next = this.next;
     prev.next = next;
     next.prev = prev;
-    return this.obj;
+	this.head.length--;
+    return this.data;
 }
 LinkedNode.prototype.get = function(i){
     var current = this.head
         ,count = 0
         ,toCompare = ~~i;
-    while(current && current != this){
-        
+    while(current && current != this){ 
         if(count === toCompare){
             return current;
         }
@@ -40,10 +38,20 @@ LinkedNode.prototype.get = function(i){
 LinkedNode.prototype.each = function(callback){
     var current = this.head
         ,count = 0;
-    while(current){
-        
+    while(current){       
         callback.call(current, count);
         count++;
         current = current.next;
     }
 }
+LinkedNode.prototype.asArray = function(){
+    var current = this.head
+		,arr = [];
+    while(current){       
+        arr.push(current.data);
+        current = current.next;
+    }
+	return arr;
+}
+
+LN = LinkedNode;

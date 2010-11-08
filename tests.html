@@ -10,15 +10,24 @@
             this.name = name;
         }
         
-        var l =    new LinkedNode( 'rich' )
+        var l =    new LinkedNode( 'mason', true )
             .push( new LinkedNode( 'drew' ) )
             .push( new LinkedNode( 'dave' ) )
             .push( new LinkedNode( 'katrina' ) );
         
-        console.log(l);
-        
+        console.log('done', l);
+        console.log(l.asArray());
+
         l.each(function(i){
-            console.log(this, i);  
+            console.log(this, i);
+
+			if(this.data == 'dave'){ console.log("POP! " + this.detach()); }
+        });
+
+		console.log(l.asArray());
+
+		l.each(function(i){
+            console.log(this, i);
         });
         </script>
     </body>
