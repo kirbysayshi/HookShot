@@ -10,10 +10,10 @@
             this.name = name;
         }
         
-        var l =    new LinkedNode( 'mason', true )
-            .push( new LinkedNode( 'drew' ) )
-            .push( new LinkedNode( 'dave' ) )
-            .push( new LinkedNode( 'katrina' ) );
+        var l = new LinkedNode( 'mason' )
+            .push( 'drew' )
+            .push( 'dave' )
+            .push( 'katrina' );
         
         console.log('done', l);
         console.log(l.asArray());

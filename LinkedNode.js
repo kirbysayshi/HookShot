@@ -3,12 +3,13 @@ function LinkedNode(data, isHead){
     this.next;
     this.prev;
     this.data = data;
-	if(isHead === true){ this.head = this; }
+	if(isHead === true || isHead == undefined){ this.head = this; }
     console.log("NEW NODE: " + data);
 }
 
 LinkedNode.prototype.length = 0;
-LinkedNode.prototype.push = function(node){
+LinkedNode.prototype.push = function(data){
+	var node = new LinkedNode(data, false);
     this.next = node;
     node.prev = this;
     node.head = this.head;
