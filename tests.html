@@ -10,25 +10,48 @@
             this.name = name;
         }
         
-        var l = new LinkedNode( 'mason' )
+        var l = new HookShot( 'mason' )
             .push( 'drew' )
             .push( 'dave' )
             .push( 'katrina' );
         
         console.log('done', l);
-        console.log(l.asArray());
+        console.log(l.flatten());
+		console.log('length init: ' + l.length());
 
-        l.each(function(i){
+
+        l.forEach(function(i){
             console.log(this, i);
 
-			if(this.data == 'dave'){ console.log("POP! " + this.detach()); }
+			if(this.data == 'dave'){ console.log("POP! ", this.detach()); }
         });
 
-		console.log(l.asArray());
+		console.log('length after 1 gone: ' + l.length());
+		console.log('length prop of head: ' + l.get(0).length);
+		console.log('length prop of tail: ' + l.get(l.length()-1).length);
 
-		l.each(function(i){
+		console.log(l.flatten());
+
+		l.forEach(function(i){
             console.log(this, i);
         });
+
+		console.log( l.where(function(index){
+			return this.data == 'drew';
+		}) );
+
+		console.log(l.where(function(index){
+			return (this.data == 'katrina' || this.data == 'mason');
+		}).flatten());
+
+		var c = l.clone();
+
+		console.log('take katrina and mason into new: ', l.where(function(index){
+			return (this.data == 'katrina' || this.data == 'mason');
+		}, true).flatten());
+
+		console.log('but the clones still have drew: ', c.flatten());
+
         </script>
     </body>
 </html>
