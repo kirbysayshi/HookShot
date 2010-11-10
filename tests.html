@@ -52,9 +52,42 @@
 
         console.log('but the clones still have drew: ', c.flatten());
 
-        var longGuy = new HookShot('somethingHead');
-        for(var i = 0; i < 100000; i++){
-            longGuy.push('data_' + i);
+        var  longShot = new HookShot('somethingHead')
+            ,longArr = [];
+        
+        for(var i = 0; i < 1000; i++){
+            longShot = longShot.push('data_' + i);
+            longArr.push('data_' + i);
+        }
+    
+        //console.log(longShot, longArr);
+    
+        //longShot.forEach(function(){
+        //    console.log(this);    
+        //});
+    
+        console.profile();
+        longShot.forEach(function(i){
+            var a = this.data;
+        });    
+        console.profileEnd();
+
+        console.profile();
+        longArr.forEach(function(val, i, arr){
+            var a = val;
+        });    
+        console.profileEnd();
+
+        console.profile();
+        whileTest();
+        console.profileEnd();
+
+        function whileTest(){
+            var  l = longArr.length-1;
+            while(l >= 0){
+                var a = longArr[l];
+                l--;
+            }
         }
 
         </script>
