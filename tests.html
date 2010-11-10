@@ -17,40 +17,40 @@
         
         console.log('done', l);
         console.log(l.flatten());
-		console.log('length init: ' + l.length());
+        console.log('length init: ' + l.length());
 
 
         l.forEach(function(i){
             console.log(this, i);
 
-			if(this.data == 'dave'){ console.log("POP! ", this.detach()); }
+            if(this.data == 'dave'){ console.log("POP! ", this.detach()); }
         });
 
-		console.log('length after 1 gone: ' + l.length());
-		console.log('length prop of head: ' + l.get(0).length);
-		console.log('length prop of tail: ' + l.get(l.length()-1).length);
+        console.log('length after 1 gone: ' + l.length());
+        console.log('length prop of head: ' + l.get(0).length);
+        console.log('length prop of tail: ' + l.get(l.length()-1).length);
 
-		console.log(l.flatten());
+        console.log(l.flatten());
 
-		l.forEach(function(i){
+        l.forEach(function(i){
             console.log(this, i);
         });
 
-		console.log( l.where(function(index){
-			return this.data == 'drew';
-		}) );
+        console.log( l.where(function(index){
+            return this.data == 'drew';
+        }) );
 
-		console.log(l.where(function(index){
-			return (this.data == 'katrina' || this.data == 'mason');
-		}).flatten());
+        console.log(l.where(function(index){
+            return (this.data == 'katrina' || this.data == 'mason');
+        }).flatten());
 
-		var c = l.clone();
+        var c = l.clone();
 
-		console.log('take katrina and mason into new: ', l.where(function(index){
-			return (this.data == 'katrina' || this.data == 'mason');
-		}, true).flatten());
+        console.log('take katrina and mason into new: ', l.where(function(index){
+            return (this.data == 'katrina' || this.data == 'mason');
+        }, true).flatten());
 
-		console.log('but the clones still have drew: ', c.flatten());
+        console.log('but the clones still have drew: ', c.flatten());
 
         </script>
     </body>
