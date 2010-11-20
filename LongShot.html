@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        
+        <script type="text/javascript" src="HookShot.js"></script>
+        <script type="text/javascript">
+
+var l = new LongShot('a')
+	.push('b')
+	.push('c')
+	.push('d')
+	.push('e');
+
+console.log(l.length, 'should be 5');
+
+l.forEach(function(el, idx){
+	console.log('iteration: element at index ' + idx, el);
+});
+
+l.flatten().forEach(function(el, idx){
+	console.log('flattened interation: element at index ' + idx, el);
+});
+
+console.log(l.getAt(3), 'get element at index 3 should be d');
+console.log(l.detachCurrent().data, 'current should be a');
+
+l.forEach(function(el, idx){
+	console.log('iteration: element at index ' + idx, el);
+});
+
+console.log(l.pop().data, 'pop should be e');
+console.log(l.length, 'should be 3');
+console.log(l.current.data, 'should be d');
+console.log(l.detachCurrent().data, 'detached should be d');
+console.log(l.current.data, 'should be c');
+console.log(l.clone().length, 'clone length should be 2');
+
+var w = new LongShot(1)
+	.push(2)
+	.push(3)
+	.push(4)
+	.push(5);
+	
+console.log(w.where(function(data, idx){
+	if(data > 2) return true;
+}).length, 'where should return 3 elements, original LongShot should be 5', w.length);	
+
+var s = w.select(function(data, idx){
+	if(data > 2) return true;
+});
+
+console.log(s.length, 'select should return 3 elements, original LongShot should be 2', w.length);
+
+w.forEach(function(data, idx){
+	console.log('m', data);
+});
+
+s.forEach(function(data, idx){
+	console.log('s', data);
+});
+
+w.join(s);	
+console.log(w.length, 'should be 5 after chain');
+w.forEach(function(data, idx){
+	console.log('w', data);
+});
+        </script>
+    </body>
+</html>
