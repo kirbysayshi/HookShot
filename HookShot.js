@@ -124,14 +124,12 @@ HookShot.prototype.flatten = function(){
     return arr;
 }
 
-////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 function LongShot(data){
 	this.head = new LongShot.prototype.Link(data, this);
 	this.current = this.head;
 	this.last = this.head;
-	//this.head.next = this.head;
-	//this.head.prev = this.head;
 	this.length = 1;
 }
 LongShot.prototype.next = function(){
