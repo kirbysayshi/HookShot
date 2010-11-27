@@ -5,90 +5,98 @@
         
         <script type="text/javascript" src="HookShot.js"></script>
         <script type="text/javascript">
-        
-        function what(name){
-            this.name = name;
-        }
-        
-        var l = new HookShot( 'mason' )
-            .push( 'drew' )
-            .push( 'dave' )
-            .push( 'katrina' );
-        
-        console.log('done', l);
-        console.log(l.flatten());
-        console.log('length init: ' + l.length());
 
+var l = new HookShot('a')
+	.push('b')
+	.push('c')
+	.push('d')
+	.push('e');
 
-        l.forEach(function(i){
-            console.log(this, i);
+console.log(l.length, 'should be 5');
 
-            if(this.data == 'dave'){ console.log("POP! ", this.detach()); }
-        });
+l.forEach(function(el, idx){
+	console.log('iteration: element at index ' + idx, el);
+});
 
-        console.log('length after 1 gone: ' + l.length());
-        console.log('length prop of head: ' + l.get(0).length);
-        console.log('length prop of tail: ' + l.get(l.length()-1).length);
+l.flatten().forEach(function(el, idx){
+	console.log('flattened interation: element at index ' + idx, el);
+});
 
-        console.log(l.flatten());
+console.log(l.getAt(3), 'get element at index 3 should be d');
+console.log(l.detachCurrent().value, 'current should be a');
 
-        l.forEach(function(i){
-            console.log(this, i);
-        });
+l.forEach(function(el, idx){
+	console.log('iteration: element at index ' + idx, el);
+});
 
-        console.log( l.where(function(index){
-            return this.data == 'drew';
-        }) );
+console.log(l.pop().value, 'pop should be e');
+console.log(l.length, 'should be 3');
+console.log(l.current.value, 'should be d');
+console.log(l.detachCurrent().value, 'detached should be d');
+console.log(l.current.value, 'should be c');
+console.log(l.clone().length, 'clone length should be 2');
 
-        console.log(l.where(function(index){
-            return (this.data == 'katrina' || this.data == 'mason');
-        }).flatten());
+var w = new HookShot(1)
+	.push(2)
+	.push(3)
+	.push(4)
+	.push(5);
+	
+console.log(w.where(function(value, idx){
+	if(value > 2) return true;
+}).length, 'where should return 3 elements, original HookShot should be 5', w.length);	
 
-        var c = l.clone();
+var s = w.select(function(value, idx){
+	if(value > 2) return true;
+});
 
-        console.log('take katrina and mason into new: ', l.where(function(index){
-            return (this.data == 'katrina' || this.data == 'mason');
-        }, true).flatten());
+console.log(s.length, 'select should return 3 elements, original HookShot should be 2', w.length);
 
-        console.log('but the clones still have drew: ', c.flatten());
+w.forEach(function(value, idx){
+	console.log('m', value);
+});
 
-        var  longShot = new HookShot('somethingHead')
-            ,longArr = [];
-        
-        for(var i = 0; i < 1000; i++){
-            longShot = longShot.push('data_' + i);
-            longArr.push('data_' + i);
-        }
-    
-        //console.log(longShot, longArr);
-    
-        //longShot.forEach(function(){
-        //    console.log(this);    
-        //});
-    
-        console.profile();
-        longShot.forEach(function(i){
-            var a = this.data;
-        });    
-        console.profileEnd();
+s.forEach(function(value, idx){
+	console.log('s', value);
+});
 
-        console.profile();
-        longArr.forEach(function(val, i, arr){
-            var a = val;
-        });    
-        console.profileEnd();
+w.join(s);	
+console.log(w.length, 'should be 5 after chain');
+w.forEach(function(value, idx){
+	console.log('w', value);
+});
 
-        console.profile();
-        whileTest();
-        console.profileEnd();
+var  hook = new HookShot('somethingHead')
+    ,longArr = [];
 
-        function whileTest(){
-            var  l = longArr.length-1;
-            while(l >= 0){
-                var a = longArr[l];
-                l--;
-            }
-        }
+for(var i = 0; i < 1000; i++){
+    hook.push('value_' + i);
+    longArr.push('value_' + i);
+}
+
+console.profile();
+hook.forEach(function(i){
+    var a = this.value;
+});    
+console.profileEnd();
+
+console.profile();
+longArr.forEach(function(val, i, arr){
+    var a = val;
+});    
+console.profileEnd();
+
+console.profile();
+whileTest();
+console.profileEnd();
+
+function whileTest(){
+    var  l = longArr.length-1;
+    while(l >= 0){
+        var a = longArr[l];
+        l--;
+    }
+}
 
         </script>
     </body>
