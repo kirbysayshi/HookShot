@@ -6,7 +6,7 @@ This is a simple linked list, implemented in JS. At its core is an object called
 The code is documented well enough... but here's what you can do to a HookShot:
 
 * iteration: next(), reset(), forEach(), where()
-* mutation: detachCurrent(), join(), select()
+* mutation: push(), pop(), detachCurrent(), join(), select()
 * transformation: flatten(), clone()
 * query: select(), where()
 
