@@ -1,7 +1,7 @@
 HookShot
 ========
 
-This is a simple linked list, implemented in JS. At it's core is an object called a Link, which is simply the wrapper for the actual data. The HookShot has an internal pointer that can be reset().
+This is a simple linked list, implemented in JS. At its core is an object called a Link, which is simply the wrapper for the actual data. The HookShot has an internal pointer that can be reset().
 
 The code is documented well enough... but here's what you can do to a HookShot:
 
